@@ -20,25 +20,13 @@
     </div>
 
     <div class="form-group">
-            <label for="password confirmation">Password confirmation</label>
-            <input type="password" class="form-control  {{ $errors->has('password confirmation') ? 'is-invalid' : '' }}" id="password confirmation" name="password confirmation"/>
-            @include('partials.invalid-feedback', ['field' => 'password confirmation'])
-        </div>
+        <label for="password confirmation">Password confirmation</label>
+        <input type="password" class="form-control  {{ $errors->has('password confirmation') ? 'is-invalid' : '' }}" id="password confirmation" name="password confirmation"/>
+        @include('partials.invalid-feedback', ['field' => 'password confirmation'])
+    </div>
 
-<<<<<<< HEAD
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Register</button>
     </div>
-=======
-    {{-- @if($message = session('message')) 
-        <div class="alert alert-danger" role="alert">
-            {{ $message }}
-        </div>
-    @endif --}}
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Register</button>
-</div>
->>>>>>> 8ca68a6616f5b97c29001dee508c4e6366f67215
 
 </form>
