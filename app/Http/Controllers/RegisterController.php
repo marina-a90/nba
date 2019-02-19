@@ -18,10 +18,22 @@ class RegisterController extends Controller
         $this->validate($request, [
             'email' => 'required|email|unique:users,email',
             'name' => 'required',
-            'password' => 'required'
+            'password' => 'required|confirmed'
         ]);
 
-        return redirect('teams.index');
+        $data = $request->only([
+            'email',
+            'name',
+            'password'
+        ]);
+
+        $data['password'] = bcrypt($data['password']);
+
+        $user = User::create($data);
+
+        auth()->login($user);
+
+        return redirect(route('teams.index'));
     }
 
 }

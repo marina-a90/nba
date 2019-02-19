@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::resource('/teams', 'TeamsController');
 
@@ -22,3 +22,9 @@ Route::resource('/players', 'PlayersController');
 Route::get('/register', 'RegisterController@create')->name('register-show');
 
 Route::post('/register', 'RegisterController@store')->name('register');
+
+Route::get('/logout', 'LoginController@logout')->name('logout');
+
+Route::get('/login', 'LoginController@create')->name('login-show');
+
+Route::post('/login', 'LoginController@store')->name('login');

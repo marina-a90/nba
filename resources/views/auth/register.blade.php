@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('teams.index') }}">
+<form method="POST" action="{{ route('register') }}">
     @csrf
 
     <div class="form-group">
@@ -25,11 +25,11 @@
             @include('partials.invalid-feedback', ['field' => 'password confirmation'])
         </div>
 
-    @if($message = session('message')) 
+    {{-- @if($message = session('message')) 
         <div class="alert alert-danger" role="alert">
             {{ $message }}
         </div>
-    @endif
+    @endif --}}
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Register</button>
