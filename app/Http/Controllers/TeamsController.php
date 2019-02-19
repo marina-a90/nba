@@ -15,7 +15,7 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        $teams = Team::findOrFail();
+        $teams = Team::all();
 
         return view('teams.index', compact('teams'));
     }

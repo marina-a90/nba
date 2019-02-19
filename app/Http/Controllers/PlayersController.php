@@ -15,7 +15,7 @@ class PlayersController extends Controller
      */
     public function index()
     {
-        $players = Player::findOrFail();
+        $players = Player::all();
 
         return view('players.index', compact('players'));
     }
