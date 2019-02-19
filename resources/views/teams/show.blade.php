@@ -39,3 +39,6 @@
         
         <button type="submit">Submit Comment</button>
 </form>
+
+{{-- <div class="alert alert-danger" role="alert">
+    </div> --}}

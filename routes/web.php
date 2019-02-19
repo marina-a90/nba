@@ -15,16 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+
 Route::resource('/teams', 'TeamsController');
 
 Route::resource('/players', 'PlayersController');
 
 
-Route::resource('/teams/{id}/comments', 'CommentsController');
+Route::resource('/teams/{id}/comments', 'CommentsController')->middleware('bannedWords');
 
-// Route::post('/teams/{id}/comments', 'CommentsController@create');
 
-// Route::get('/teams/{id}/comments', 'CommentsController@store');
+Route::get('/forbidden-comment', function () {
+    return view('partials.forbidden-comment');
+})->name('forbidden-comment');
+
 
 
 Route::get('/register', 'RegisterController@create')->name('register-show');

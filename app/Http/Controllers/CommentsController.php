@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Comment;
-use App\User;
 
 class CommentsController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('bannedWords')->only('store');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -37,11 +42,11 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id, User $user)
+    public function store(Request $request, $id)
     {
         Comment::create([
             'team_id' => $id,
-            'user_id' => 4, //radi za ovaj id, ne znam kako da "uhvatim id usera"
+            'user_id' => auth()->user()->id,
             'content' => $request->content
         ]);
 
