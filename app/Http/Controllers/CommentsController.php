@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Controller;
+use App\Comment;
+use App\User;
 
 class CommentsController extends Controller
 {
@@ -15,6 +16,8 @@ class CommentsController extends Controller
      */
     public function index()
     {
+        $comments = Comment::all();
+
         return view('teams.show', compact('comments'));
     }
 
@@ -25,7 +28,7 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->back();
     }
 
     /**
@@ -34,9 +37,15 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id, User $user)
     {
-        //
+        Comment::create([
+            'team_id' => $id,
+            'user_id' => 4, //radi za ovaj id, ne znam kako da "uhvatim id usera"
+            'content' => $request->content
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -45,7 +54,7 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Comment $comment, User $user)
     {
         Comment::validate($request, [
             'content' => 'required|min:10',
@@ -53,7 +62,7 @@ class CommentsController extends Controller
             'team_id' => $team_id
         ]);
 
-        return redirect(route('teams.show'));
+        return view('teams.show', compact('comment'));
     }
 
     /**

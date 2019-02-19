@@ -26,3 +26,16 @@
         </li>
     </ul>
 @endforeach
+
+
+<h4>Add a comment:</h4>
+    <form method="POST" action="/teams/{{ $team->id }}/comments">
+        @csrf
+
+        <textarea type="text" name="content" rows="10" columns="40" placeholder="Comment"
+        class="form-control {{ $errors->has('text') ? 'is-invalid' : '' }}">{{ old('content') }}</textarea>
+
+        @include('partials.invalid-feedback', ['field' => 'content'])
+        
+        <button type="submit">Submit Comment</button>
+</form>

@@ -19,6 +19,14 @@ Route::resource('/teams', 'TeamsController');
 
 Route::resource('/players', 'PlayersController');
 
+
+Route::resource('/teams/{id}/comments', 'CommentsController');
+
+// Route::post('/teams/{id}/comments', 'CommentsController@create');
+
+// Route::get('/teams/{id}/comments', 'CommentsController@store');
+
+
 Route::get('/register', 'RegisterController@create')->name('register-show');
 
 Route::post('/register', 'RegisterController@store')->name('register');
