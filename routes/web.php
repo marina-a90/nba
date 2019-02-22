@@ -24,6 +24,15 @@ Route::resource('/players', 'PlayersController');
 Route::resource('/teams/{id}/comments', 'CommentsController')->middleware('bannedWords');
 
 
+Route::group(
+    ['middleware' => ['auth'] ],
+    function() {
+        Route::get('/my-news', 'UserNewsController@index')
+        ->name('my-news');
+    }
+);
+
+
 Route::get('/forbidden-comment', function () {
     return view('partials.forbidden-comment');
 })->name('forbidden-comment');
@@ -39,3 +48,6 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::get('/login', 'LoginController@create')->name('login-show');
 
 Route::post('/login', 'LoginController@store')->name('login');
+
+
+Route::resource('/news', 'NewsController');

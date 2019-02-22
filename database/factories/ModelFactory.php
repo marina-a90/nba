@@ -23,3 +23,13 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+
+$factory->define(App\News::class, function (Faker $faker) {
+    $user = App\User::inRandomOrder()->first();
+    return [
+        'title' => $faker->realText(100),
+        'content' => $faker->realText(1000),
+        'user_id' => $user->id
+    ];
+});
