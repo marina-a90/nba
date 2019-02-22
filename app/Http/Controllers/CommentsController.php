@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Comment;
 
+use App\Mail\CommentReceived;
+
+
 class CommentsController extends Controller
 {
     public function __construct() 
@@ -44,11 +47,13 @@ class CommentsController extends Controller
      */
     public function store(Request $request, $id)
     {
-        Comment::create([
+        $comment = Comment::create([
             'team_id' => $id,
             'user_id' => auth()->user()->id,
             'content' => $request->content
         ]);
+
+        \Mail::to($comment->team->email)->send(new CommentReceived($comment->team, $comment));
 
         return redirect()->back();
     }
