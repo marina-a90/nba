@@ -2,4 +2,6 @@
 
 <p>{{ $comment->content }}</p>
 
+{{-- <p>Comment created by {{ $comment->user->name }}</p> --}}
+
 <p>Comment posted at {{ $comment->created_at }}</p>

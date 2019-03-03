@@ -7,10 +7,13 @@
             <h3>{{ $new->title }}</h3>
         </a>
         <div>Created at {{ $new->created_at }}</div>
-        {{-- <div>Created by {{ $new->user->name }}</div> --}}
+        <div>Created by {{ $new->user->name }}</div>
         <br>
     </li>
 @endforeach
 </ul>
 
-{{ $news->links() }}
+
+<div>
+    {{ $news->links() }}
+</div>

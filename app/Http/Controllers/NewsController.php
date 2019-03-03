@@ -20,12 +20,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        // $news = App\News::with('user')->where('id', '>', 0)->paginate(3);
+        $news = News::with('user')->where('id', '>', 0)->paginate(10);
 
-        $news = App\News::with('user')->get()->paginate(3);
-
-
-        return view('news.index', compact('news'));
+        return view('news.index', compact('news', 'user'));
     }
 
     /**

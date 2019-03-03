@@ -44,7 +44,8 @@ class User extends Authenticatable
 
     public function news() 
     {
-        return $this->belongsToMany('App\News');
+        // return $this->belongsToMany('App\News');
+        return $this->hasMany('App\News');
     }
 
 }
